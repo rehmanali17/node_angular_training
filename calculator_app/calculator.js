@@ -86,7 +86,7 @@ result_btn.addEventListener('click',()=>{
     let result = 0;       // Store Temporary Result
     operators.forEach((op,i) => {
         if( i == 0){
-            result = operator_functions[op](parseInt(operands[i+1]),parseInt(operands[1]))
+            result = operator_functions[op](parseInt(operands[i]),parseInt(operands[i+1]))
         }else{
             result = operator_functions[op](result,parseInt(operands[i+1]))
         }
