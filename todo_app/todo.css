@@ -86,6 +86,7 @@ input[type='submit']{
     font-size: 18px;
     font-weight: 500;
     color: #9B9B9B;
+    word-break: break-all;
 }
 
 .no-todo{
