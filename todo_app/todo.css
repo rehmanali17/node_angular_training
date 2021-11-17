@@ -1,0 +1,142 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.content{
+    width: 100vw;
+    min-height: 100vh;
+    background: #8650EE;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-todo-container{
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.add-todo-form{
+    border: 6px solid #A66FF1;
+    border-radius: 5px;
+    width: 50%;
+    display: flex;
+    box-sizing: border-box;
+}
+
+input[type='text']{
+    width: 80%;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+}
+
+input[type='submit']{
+    width: 20%;
+    background: #6AB4F1;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.error-msg{
+    box-sizing: border-box;
+    color: red;
+    font-size: 20px;
+    font-weight: 0.9em;
+    letter-spacing: 1px;
+    width: 50%;
+    margin-top: 8px;
+}
+
+.todos-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.todos{
+    border: 6px solid #A66FF1;
+    border-radius: 5px;
+    width: 50%;
+    min-height: fit-content;
+    background: white;
+    padding: 4px 15px 12px 15px;
+    box-sizing: border-box;
+}
+
+.todo{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #9B9B9B;
+    padding-bottom: 2px;
+}
+
+.todo-content{
+    width: 90%;
+    font-size: 18px;
+    font-weight: 500;
+    color: #9B9B9B;
+}
+
+.no-todo{
+    font-size: 18px;
+    font-weight: 500;
+    color: #9B9B9B;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.todo-delete{
+    color: #9B9B9B;
+    cursor: pointer;
+}
+
+.line-through{
+    text-decoration: line-through;
+}
+
+@media screen and (max-width:992px) {
+    .add-todo-form{
+        width: 60%;
+    }
+    .todos{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:880px) {
+    .add-todo-form{
+        width: 70%;
+    }
+    .todos{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .add-todo-form{
+        width: 80%;
+    }
+    .todos{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:568px) {
+    .add-todo-form{
+        width: 90%;
+    }
+    .todos{
+        width: 90%;
+    }
+}
