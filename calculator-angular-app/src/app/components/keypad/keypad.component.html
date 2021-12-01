@@ -1,5 +1,5 @@
 <div class="btn-container">
-    <div (click)="inputBtnClicked($event)" class="row">
+    <!-- <div (click)="inputBtnClicked($event)" class="row">
         <div class="btn input-btn">1</div>
         <div class="btn input-btn">2</div>
         <div class="btn input-btn">3</div>
@@ -22,5 +22,20 @@
         <div (click)="inputBtnClicked($event)" class="btn input-btn">0</div>
         <div (click)="resultBtnClicked()" id="result-btn" class="btn result-btn"> = </div>
         <div (click)="inputBtnClicked($event)" class="btn operators">/</div>
+    </div> -->
+    <!-- <div class="row">
+        <app-button class="w-25" [class]="'btn input-btn'"  [text]="'1'"></app-button>
+        <app-button class="w-25" [class]="'btn input-btn'"  [text]="'2'"></app-button>
+        <app-button class="w-25" [class]="'btn input-btn'"  [text]="'3'"></app-button>
+        <app-button class="w-25" [class]="'btn operators'"  [text]="'+'"></app-button>
+    </div> -->
+    <div class="row" *ngFor="let keypadBtns of keypadBtnsList">
+        <app-button *ngFor="let btn of keypadBtns" class="w-25" [class]="'input-btn'" [text]="'0'" ></app-button>
     </div>
+    <!-- <div (click)="inputBtnClicked($event)" class="row">
+        <div class="btn input-btn">1</div>
+        <div class="btn input-btn">2</div>
+        <div class="btn input-btn">3</div>
+        <div class="btn operators">+</div>
+    </div> -->
 </div>

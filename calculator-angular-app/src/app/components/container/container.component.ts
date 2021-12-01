@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-calculator-container',
-  templateUrl: './calculator-container.component.html',
-  styleUrls: ['./calculator-container.component.css']
+  selector: 'app-container',
+  templateUrl: './container.component.html',
+  styleUrls: ['./container.component.css']
 })
-export class CalculatorContainerComponent implements OnInit {
-  inputString:string = ''
-  resultString:string = ''
+export class ContainerComponent implements OnInit {
+  inputString = ''
+  resultString = ''
   operator_types:RegExp = /^[+-\/*]$/
  
   constructor() { }

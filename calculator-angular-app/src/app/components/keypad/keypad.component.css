@@ -10,7 +10,11 @@
     column-gap: 15px;
 }
 
-.btn{
+.w-25{
+    width: 25%;
+}
+
+/* .btn{
     width: 25%;
     height: 80px;
     font-size: 30px;
@@ -42,4 +46,4 @@
 
 .clear{
     background: #F0A3AB;
-}
+} */
