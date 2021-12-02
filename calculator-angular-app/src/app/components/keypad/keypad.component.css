@@ -1,4 +1,4 @@
-.btn-container{
+.btns-container{
     display: flex;
     flex-wrap: wrap;
     row-gap: 15px;
@@ -13,37 +13,3 @@
 .w-25{
     width: 25%;
 }
-
-/* .btn{
-    width: 25%;
-    height: 80px;
-    font-size: 30px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 5px 0 0 #88A4BA;
-}
-
-.btn:active{
-    background: #AACEE8;
-    transition: 0.3s linear;
-}
-
-
-.input-btn{ 
-    background: #F3FBEC;
-}
-
-.result-btn{
-    background: #F3FBEC;
-}
-
-.operators{
-    background: #F1FEA2;
-}
-
-.clear{
-    background: #F0A3AB;
-} */

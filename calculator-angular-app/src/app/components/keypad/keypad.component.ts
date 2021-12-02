@@ -7,53 +7,47 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class KeypadComponent implements OnInit {
   constructor() { }
-  @Output() inputChanged = new EventEmitter()
-  @Output() clearInput = new EventEmitter()
+  @Output() handleInputChange = new EventEmitter<string>()
+  @Output() resetInput = new EventEmitter()
   @Output() computeResult = new EventEmitter()
-  keypadBtnsList = [
+  keypadBtns = [
     [
-      { text: '1', class:'input-btn' },
-      { text: '2', class:'input-btn' },
-      { text: '3', class:'input-btn' },
-      { text: '+', class:'operator-btn' },
+      { innerText: '1', className:'input-btn' },
+      { innerText: '2', className:'input-btn' },
+      { innerText: '3', className:'input-btn' },
+      { innerText: '+', className:'operator-btn' },
     ],
     [
-      { text: '4', class:'input-btn' },
-      { text: '5', class:'input-btn' },
-      { text: '6', class:'input-btn' },
-      { text: '-', class:'operator-btn' },
-    ],
-    ,
-    [
-      { text: '7', class:'input-btn' },
-      { text: '8', class:'input-btn' },
-      { text: '9', class:'input-btn' },
-      { text: '*', class:'operator-btn' },
+      { innerText: '4', className:'input-btn' },
+      { innerText: '5', className:'input-btn' },
+      { innerText: '6', className:'input-btn' },
+      { innerText: '-', className:'operator-btn' },
     ],
     [
-      { text: 'C', class:'clear-btn' },
-      { text: '0', class:'input-btn' },
-      { text: '=', class:'result-btn' },
-      { text: '/', class:'operator-btn' },
+      { innerText: '7', className:'input-btn' },
+      { innerText: '8', className:'input-btn' },
+      { innerText: '9', className:'input-btn' },
+      { innerText: '*', className:'operator-btn' },
+    ],
+    [
+      { innerText: 'C', className:'clear-btn' },
+      { innerText: '0', className:'input-btn' },
+      { innerText: '=', className:'result-btn' },
+      { innerText: '/', className:'operator-btn' },
     ],
   ]
   ngOnInit(): void {
   }
 
-  inputBtnClicked(event:Event){
-    const htmlElement = <HTMLElement>event.target
-    // console.log(htmlElement.classList.contains('btn'))
-    if(htmlElement.classList.contains('btn')){
-      this.inputChanged.emit(htmlElement.innerText)
-    }  
+  handleBtnClick(input:string){
+    if(input === 'C'){
+      this.resetInput.emit()
+    }else if(input === '='){
+      this.computeResult.emit()
+    }else{
+      this.handleInputChange.emit(input)
+    }
   }
 
-  clearBtnClicked(){
-    this.clearInput.emit()
-  }
-
-  resultBtnClicked(){
-    this.computeResult.emit()
-  }
 
 }

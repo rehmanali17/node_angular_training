@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./container.component.css']
 })
 export class ContainerComponent implements OnInit {
-  inputString = ''
-  resultString = ''
-  operator_types:RegExp = /^[+-\/*]$/
+  input = ''
+  result = ''
+  operators = /^[+-\/*]$/
  
   constructor() { }
 
@@ -16,41 +16,41 @@ export class ContainerComponent implements OnInit {
   }
 
   // Validation functions
-  validateInput(input:string,operator_types:RegExp) {
-  const inputLength = input.length
-  let isValid = true
-  if(operator_types.test(input[0])){
-      isValid = false
-  }else if(operator_types.test(input[inputLength-1])){
-      isValid = false
-  }else{
-      for (let i = 1; i < inputLength - 1; i++) {
-          if(operator_types.test(input[i]) && operator_types.test(input[i+1])){
-              isValid = false
-          }
-      }
-  }
-  return isValid
-}
-
-  inputChanged(input:string){
-    this.inputString += input
+  validateInput(input:string,operators:RegExp) {
+    const inputLength = input.length
+    let isValid = true
+    if(operators.test(input[0])){
+        isValid = false
+    }else if(operators.test(input[inputLength-1])){
+        isValid = false
+    }else{
+        for (let i = 1; i < inputLength - 1; i++) {
+            if(operators.test(input[i]) && operators.test(input[i+1])){
+                isValid = false
+            }
+        }
+    }
+    return isValid
   }
 
-  clearInput(){
-    this.inputString = ''
-    this.resultString = ''
+  handleInputChange(input:string){
+    this.input += input
+  }
+
+  resetInput(){
+    this.input = ''
+    this.result = ''
   }
 
   computeResult(){
-    const isValid = this.validateInput(this.inputString,this.operator_types)
-    let result:string;
+    const isValid = this.validateInput(this.input,this.operators)
+    let result = '';
     if(isValid){
-        result = eval(this.inputString)
+        result = eval(this.input)
     }else{
         result = 'Invalid Input'
     }
-    this.resultString = result
+    this.result = result
   }
 
 }

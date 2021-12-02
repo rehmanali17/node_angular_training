@@ -1,8 +1,8 @@
-<div class="calculator">
-    <app-result [inputData]="inputString" [resultData]="resultString" ></app-result>
+<div class="container">
+    <app-result [input]="input" [result]="result" ></app-result>
     <app-keypad
-        (inputChanged)="inputChanged($event)" 
-        (clearInput)="clearInput()" 
+        (handleInputChange)="handleInputChange($event)" 
+        (resetInput)="resetInput()" 
         (computeResult)="computeResult()" 
     ></app-keypad>
 </div>

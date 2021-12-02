@@ -6,16 +6,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent implements OnInit {
-  @Input() text = ''
-  @Input() class = ''
-  @Output() inputBtnClicked = new EventEmitter()
-  constructor() { }
+  @Input() innerText = ''
+  @Input() className = ''
+  @Output() handleBtnClick = new EventEmitter<string>()
+  
+  constructor() {}
 
   ngOnInit(): void {
   }
 
   btnClicked(event: Event){
-    console.log(event.target)
+    const htmlElement = <HTMLElement>event.target
+    this.handleBtnClick.emit(htmlElement.innerText)
   }
 
 }
