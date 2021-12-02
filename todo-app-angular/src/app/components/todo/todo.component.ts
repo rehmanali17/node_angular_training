@@ -9,8 +9,9 @@ import { ManageTodosService } from 'src/app/services/manage-todos.service';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
-  @Input() todo: todosModel = {id:-1,content:'',isChecked:false}
-  checkTodo:boolean = false
+  
+  @Input() todo: todosModel = { id:-1, body:'', isChecked:false }
+  
   constructor(private todoService: ManageTodosService) {}
 
   ngOnInit(): void {
@@ -20,12 +21,9 @@ export class TodoComponent implements OnInit {
     this.todoService.removeTodo(id)
   }
 
-  handleChange(id:number){
-    this.todoService.updateTodoStatus(id,this.checkTodo)
+  handleStatusChange(id:number,status:boolean){
+    this.todoService.updateTodoStatus(id,status)
   }
 
-  // updateTodoStatus(id:number,status:boolean){
-  //   this.todoService.updateTodoStatus()
-  // }
 
 }

@@ -1,14 +1,10 @@
 <div class="todos-container">
-    <div class="todos">
+    <div class="todos-list">
         <ng-container *ngIf="doesExistTodos">
             <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
         </ng-container>
         <ng-container *ngIf="!doesExistTodos">
-            <div class="no-todo">No todos have been added yet</div>
+            <div class="no-todo-message">No todos have been added yet</div>
         </ng-container>
-        
-        <!-- <ng-container *ngIf="!doesExistTodos">
-            <app-todo [todo]="{text:'No todos have been added'}"></app-todo>
-        </ng-container> -->
     </div>
 </div>

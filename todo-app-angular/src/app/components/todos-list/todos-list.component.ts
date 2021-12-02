@@ -10,11 +10,12 @@ import { todosModel } from 'src/app/models/todos.model';
 })
 export class TodosListComponent implements OnInit {
   todos: todosModel[] = []
-  subscription: Subscription;
-  doesExistTodos:boolean = false;
+  todosSubscription: Subscription;
+  doesExistTodos = false;
+
   constructor(private todoService: ManageTodosService) {
-    this.subscription = this.todoService.getTodos()
-      .subscribe(todos => {
+    this.todosSubscription = this.todoService.getTodos()
+      .subscribe(todos => {  
         this.todos = todos
         this.doesExistTodos = this.todos.length > 0 ? true : false
       })

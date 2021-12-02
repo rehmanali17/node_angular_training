@@ -8,8 +8,8 @@ import { todosModel } from '../models/todos.model';
 export class ManageTodosService {
   private todos: todosModel[] = []
   private todosSubject = new Subject<any>()
-  constructor() {}
 
+  constructor() {}
 
   addTodo(todo:todosModel){
     this.todos.push(todo)
@@ -29,7 +29,6 @@ export class ManageTodosService {
     }else{
       this.todos = []
     }
-    // return this.todos
     this.todosSubject.next(this.todos)
   }
 
@@ -39,6 +38,7 @@ export class ManageTodosService {
 
   updateTodoStatus(id:number, status:boolean){
     this.todos[id].isChecked = status
+    localStorage.setItem('todos',JSON.stringify(this.todos))
   }
 
   getTodos():Observable<any>{

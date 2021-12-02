@@ -4,7 +4,7 @@
     justify-content: center;
 }
 
-.todos{
+.todos-list{
     border: 6px solid #A66FF1;
     border-radius: 5px;
     width: 50%;
@@ -15,7 +15,7 @@
     margin-top: 18px;
 }
 
-.no-todo{
+.no-todo-message{
     font-size: 18px;
     font-weight: 500;
     color: #9B9B9B;
@@ -24,25 +24,25 @@
 }
 
 @media screen and (max-width:992px) {
-    .todos{
+    .todos-list{
         width: 60%;
     }
 }
 
 @media screen and (max-width:880px) {
-    .todos{
+    .todos-list{
         width: 70%;
     }
 }
 
 @media screen and (max-width:700px) {
-    .todos{
+    .todos-list{
         width: 80%;
     }
 }
 
 @media screen and (max-width:568px) {
-    .todos{
+    .todos-list{
         width: 90%;
     }
 }

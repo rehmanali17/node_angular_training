@@ -1,5 +1,5 @@
 export interface todosModel {
     id:number,
-    content:string,
+    body:string,
     isChecked:boolean
 }
