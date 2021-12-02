@@ -1,0 +1,24 @@
+<div class="add-todo-container">
+    <form class="add-todo-form">
+        <input
+         type="text"
+         name="todo"
+         placeholder="What will you do today?" 
+         [(ngModel)]="todo" 
+         (keyup)="handleInputChange($event)" 
+        />
+
+        <input 
+         type="button"
+         (click)="handleFormSubmit($event)"
+         [disabled]="isError" 
+         [ngClass]="{'disabled': isError}"
+         value="ADD" 
+        />
+
+    </form>
+</div>
+<div class="error-msg" *ngIf="showError" >
+    {{ errorMessage }} <span (click)="hideErrorMessage()" class="close-btn">&times;</span>
+</div>
+

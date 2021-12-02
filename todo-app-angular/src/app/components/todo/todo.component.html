@@ -1,0 +1,5 @@
+<div class='todo'>
+    <input type="checkbox" class="todo-check" [(ngModel)]="todo.isChecked" (change)="handleStatusChange(todo.id,todo.isChecked)" [checked]="todo.isChecked" />
+    <p [ngClass]="{'line-through': todo.isChecked}" class="todo-body"> {{ todo.body }} </p>
+    <i (click)="deleteTodo(todo.id)" class="fas fa-trash todo-delete-icon"></i>
+</div>

@@ -1,0 +1,48 @@
+.todos-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.todos-list{
+    border: 6px solid #A66FF1;
+    border-radius: 5px;
+    width: 50%;
+    min-height: fit-content;
+    background: white;
+    padding: 4px 15px 12px 15px;
+    box-sizing: border-box;
+    margin-top: 18px;
+}
+
+.no-todo-message{
+    font-size: 18px;
+    font-weight: 500;
+    color: #9B9B9B;
+    text-align: center;
+    margin-top: 6px;
+}
+
+@media screen and (max-width:992px) {
+    .todos-list{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:880px) {
+    .todos-list{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .todos-list{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:568px) {
+    .todos-list{
+        width: 90%;
+    }
+}
