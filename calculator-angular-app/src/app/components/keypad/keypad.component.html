@@ -1,0 +1,5 @@
+<div class="btns-container">
+    <div class="row" *ngFor="let keypadBtn of keypadBtns">
+        <app-button (handleBtnClick)="handleBtnClick($event)" *ngFor="let btn of keypadBtn" class="w-25" [className]="btn['className']" [innerText]="btn['innerText']" ></app-button>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="container">
+    <app-result [input]="input" [result]="result" ></app-result>
+    <app-keypad
+        (handleInputChange)="handleInputChange($event)" 
+        (resetInput)="resetInput()" 
+        (computeResult)="computeResult()" 
+    ></app-keypad>
+</div>

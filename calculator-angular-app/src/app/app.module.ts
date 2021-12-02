@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CalculatorContainerComponent } from './components/calculator-container/calculator-container.component';
-import { ResultContainerComponent } from './components/result-container/result-container.component';
-import { InputContainerComponent } from './components/input-container/input-container.component';
+import { ContainerComponent } from './components/container/container.component'
+import { ResultComponent } from './components/result/result.component';
+import { KeypadComponent } from './components/keypad/keypad.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalculatorContainerComponent,
-    ResultContainerComponent,
-    InputContainerComponent
+    ContainerComponent,
+    ResultComponent,
+    KeypadComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule
