@@ -1,0 +1,7 @@
+.calculator{
+    width: 400px;
+    min-height: 500px;
+    border: 5px solid #AEBD83;
+    background: #AACEE8;
+    padding: 12px;
+}
