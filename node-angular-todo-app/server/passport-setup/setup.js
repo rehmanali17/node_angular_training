@@ -59,7 +59,6 @@ options.secretOrKey = process.env.PORT;
 passport.use(
     "jwt",
     new JwtStrategy(options, (token, done) => {
-        console.log(token);
         User.findByPk(token.id, { raw: true })
             .then((user) => {
                 if (!user) {
