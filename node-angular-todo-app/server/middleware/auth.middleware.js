@@ -22,7 +22,7 @@ class AuthMiddleware {
         passport.authenticate("login", (err, user, info) => {
             if (err || !user) {
                 res.status(401).json({
-                    message: "Login failed",
+                    message: info.message,
                     statusCode: 400,
                 });
             } else {

@@ -1,0 +1,23 @@
+<ul class="nav d-flex justify-content-end">
+    <li class="nav-item">
+        <a
+            class="nav-link active"
+            [routerLink]="'user/todos-list'"
+            [routerLinkActive]="['text-success', 'text-decoration-underline']"
+            >Todos</a
+        >
+    </li>
+    <li class="nav-item">
+        <a
+            class="nav-link"
+            [routerLink]="'user/add-todo'"
+            [routerLinkActive]="['text-success', 'text-decoration-underline']"
+            >Add Todo</a
+        >
+    </li>
+    <li class="nav-item">
+        <a class="nav-link cursor-pointer" (click)="handleLogout($event)"
+            >Log Out</a
+        >
+    </li>
+</ul>

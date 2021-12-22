@@ -1,0 +1,30 @@
+.line-through {
+    text-decoration: line-through;
+}
+
+.h-80 {
+    height: 80vh !important;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.45);
+    height: 100vh;
+}
+
+.inner-modal {
+    height: 80px;
+    width: 80px;
+    border-radius: 8px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-justify {
+    text-align: justify !important;
+}

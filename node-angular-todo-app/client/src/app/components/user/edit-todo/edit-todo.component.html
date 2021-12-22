@@ -1,0 +1,80 @@
+<div class="container mt-5">
+    <div
+        *ngIf="isLoading; else notLoading"
+        class="d-flex justify-content-center h-80 align-items-center"
+    >
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <ng-template #notLoading>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <h1 class="text-center text-primary mb-4">Edit Todo</h1>
+                <p
+                    *ngIf="message !== ''"
+                    class="alert {{ alertType }} text-center p-2 my-2"
+                >
+                    {{ message }}
+                </p>
+                <form
+                    *ngIf="!isError"
+                    [formGroup]="editTodoForm"
+                    (ngSubmit)="handleFormSubmit()"
+                >
+                    <div class="form-group mb-3">
+                        <label class="font-weight-500 mb-2">Todo</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="task"
+                            [ngClass]="{
+                                'is-invalid':
+                                    (editTodoForm
+                                        .get('task')
+                                        ?.hasError('required') &&
+                                        editTodoForm.get('task')?.touched) ||
+                                    (editTodoForm
+                                        .get('task')
+                                        ?.hasError('pattern') &&
+                                        editTodoForm.get('task')?.dirty)
+                            }"
+                        />
+                        <small
+                            *ngIf="
+                                editTodoForm
+                                    .get('task')
+                                    ?.hasError('required') &&
+                                editTodoForm.get('task')?.touched
+                            "
+                            class="form-text text-danger"
+                            >This field is required</small
+                        >
+                        <small
+                            *ngIf="
+                                editTodoForm.get('task')?.hasError('pattern') &&
+                                editTodoForm.get('task')?.dirty
+                            "
+                            class="form-text text-danger"
+                            >Only characters are allowed</small
+                        >
+                    </div>
+                    <div class="d-flex justify-content-center mt-4">
+                        <input
+                            *ngIf="isLoading === false"
+                            type="submit"
+                            value="Edit"
+                            class="btn btn-primary"
+                            [disabled]="
+                                editTodoForm.invalid && editTodoForm.touched
+                            "
+                        />
+                        <div
+                            *ngIf="isLoading === true"
+                            class="spinner-border text-primary"
+                            role="status"
+                        ></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </ng-template>
+</div>

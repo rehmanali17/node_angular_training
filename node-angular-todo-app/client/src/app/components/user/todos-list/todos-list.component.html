@@ -1,0 +1,74 @@
+<div class="container mt-5">
+    <div
+        *ngIf="isLoading === true"
+        class="d-flex justify-content-center h-80 align-items-center"
+    >
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <div *ngIf="isLoading === false" class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center text-primary mb-4">My Todo List</h1>
+            <p
+                *ngIf="message !== '' || isError"
+                class="alert {{ alertType }} text-center p-2 my-2"
+            >
+                {{ message }}
+            </p>
+            <div
+                *ngIf="deleteMultipleTodos.length > 0"
+                class="w-100 my-1 d-flex justify-content-end"
+            >
+                <a
+                    class="text-primary cursor-pointer"
+                    (click)="handleBulkDelete($event)"
+                    >Delete</a
+                >
+            </div>
+            <table *ngIf="!isError" class="table table-striped mt-2">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">Status</th>
+                        <th scope="col">Todo</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let todo of todos; let i = index"
+                        class="text-center"
+                    >
+                        <td>
+                            <input
+                                type="checkbox"
+                                [checked]="todo['isDone']"
+                                [(ngModel)]="todo.isDone"
+                                (change)="
+                                    handleStatusChange(todo.id, todo.isDone)
+                                "
+                            />
+                        </td>
+                        <td
+                            class="text-justify"
+                            [ngClass]="{ 'line-through': todo.isDone }"
+                        >
+                            {{ todo["task"] }}
+                        </td>
+                        <td>
+                            <i
+                                (click)="redirectToEditPage(todo.id)"
+                                class="fas fa-edit text-primary cursor-pointer"
+                            ></i>
+                        </td>
+                        <td class="text-danger">
+                            <i
+                                class="fas fa-trash-alt cursor-pointer"
+                                (click)="deleteTodo(todo.id)"
+                            ></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

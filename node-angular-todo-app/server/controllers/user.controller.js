@@ -4,11 +4,11 @@ class UserController {
     // Add Todo
     static createTodo = (req, res) => {
         try {
-            const { task, isDone } = req.body;
+            const { task } = req.body;
             Todo.create({
                 userId: req.user.id,
                 task,
-                isDone,
+                isDone: false,
             })
                 .then((todo) => {
                     res.status(201).json({
@@ -37,18 +37,32 @@ class UserController {
     static getTodos = (req, res) => {
         try {
             Todo.findAll({ where: { userId: req.user.id } })
-                .then((rows) => {
-                    const todos = rows.map((row) => {
-                        return {
-                            todo: row,
-                            requests: {
-                                GET: `${process.env.base_url}/user/get-todo/${row.id}`,
-                                PUT: `${process.env.base_url}/user/update-todo-status/${row.id}`,
-                                DELETE: `${process.env.base_url}/user/delete-todo/${row.id}`,
-                            },
-                        };
-                    });
+                .then((todos) => {
                     res.status(200).json({ todos });
+                })
+                .catch((err) => {
+                    res.status(400).json({
+                        message: "Error occured!",
+                        error: err.message,
+                        statusCode: 400,
+                    });
+                });
+        } catch (error) {
+            res.status(400).json({
+                message: "Error occured!",
+                error: error.message,
+                statusCode: 400,
+            });
+        }
+    };
+
+    // Get Single Todo
+    static getTodo = (req, res) => {
+        try {
+            const { id } = req.params;
+            Todo.findOne({ where: { id, userId: req.user.id } })
+                .then((todo) => {
+                    res.status(200).json({ todo });
                 })
                 .catch((err) => {
                     res.status(400).json({
@@ -95,7 +109,7 @@ class UserController {
     };
 
     // Update Status
-    static updateStatus = (req, res) => {
+    static updateTodoStatus = (req, res) => {
         try {
             const { id } = req.params;
             const { status } = req.body;

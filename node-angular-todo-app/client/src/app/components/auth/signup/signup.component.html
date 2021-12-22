@@ -1,0 +1,136 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h1 class="text-center text-primary mb-4">Sign Up</h1>
+            <form [formGroup]="signupForm" (ngSubmit)="handleFormSubmit()">
+                <div class="form-group mb-3">
+                    <label class="font-weight-500 mb-1">Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="name"
+                        [ngClass]="{
+                            'is-invalid':
+                                (signupForm.get('name')?.hasError('required') &&
+                                    signupForm.get('name')?.touched) ||
+                                (signupForm.get('name')?.hasError('pattern') &&
+                                    signupForm.get('name')?.dirty)
+                        }"
+                    />
+                    <small
+                        *ngIf="
+                            signupForm.get('name')?.hasError('required') &&
+                            signupForm.get('name')?.touched
+                        "
+                        class="form-text text-danger"
+                        >Name is required</small
+                    >
+                    <small
+                        *ngIf="
+                            signupForm.get('name')?.hasError('pattern') &&
+                            signupForm.get('name')?.dirty
+                        "
+                        class="form-text text-danger"
+                        >Please enter a valid name</small
+                    >
+                </div>
+                <div class="form-group mb-3">
+                    <label class="font-weight-500 mb-1">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        formControlName="email"
+                        [ngClass]="{
+                            'is-invalid':
+                                ((signupForm
+                                    .get('email')
+                                    ?.hasError('required') ||
+                                    signupForm
+                                        .get('email')
+                                        ?.hasError('email')) &&
+                                    signupForm.get('email')?.touched) ||
+                                (signupForm
+                                    .get('email')
+                                    ?.hasError('emailIsForbidden') &&
+                                    signupForm.get('email')?.dirty)
+                        }"
+                    />
+                    <small
+                        *ngIf="
+                            signupForm.get('email')?.hasError('required') &&
+                            signupForm.get('email')?.touched
+                        "
+                        class="form-text text-danger"
+                        >Email is required</small
+                    >
+                    <small
+                        *ngIf="
+                            signupForm.get('email')?.hasError('email') &&
+                            signupForm.get('email')?.touched
+                        "
+                        class="form-text text-danger"
+                        >Please enter a valid email</small
+                    >
+                    <small
+                        *ngIf="
+                            signupForm
+                                .get('email')
+                                ?.hasError('emailIsForbidden') &&
+                            signupForm.get('email')?.dirty
+                        "
+                        class="form-text text-danger"
+                        >This email is already taken</small
+                    >
+                </div>
+                <div class="form-group mb-3">
+                    <label class="font-weight-500 mb-1">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        formControlName="password"
+                        [ngClass]="{
+                            'is-invalid':
+                                signupForm.get('password')?.invalid &&
+                                signupForm.get('password')?.touched
+                        }"
+                    />
+                    <small
+                        *ngIf="
+                            signupForm.get('password')?.hasError('required') &&
+                            signupForm.get('password')?.touched
+                        "
+                        class="form-text text-danger"
+                        >Password is required</small
+                    >
+                    <small
+                        *ngIf="
+                            signupForm.get('password')?.hasError('minlength') &&
+                            signupForm.get('password')?.touched
+                        "
+                        class="form-text text-danger"
+                        >Password should be atleast six characters long</small
+                    >
+                </div>
+                <p
+                    *ngIf="errorMessage !== ''"
+                    class="alert alert-danger text-center p-2 mt-2"
+                    [innerText]="errorMessage"
+                ></p>
+                <div class="d-flex justify-content-center mt-4">
+                    <input
+                        *ngIf="isLoading === false"
+                        type="submit"
+                        value="Signup"
+                        class="btn btn-primary"
+                        [disabled]="signupForm.invalid && signupForm.touched"
+                    />
+                    <div
+                        *ngIf="isLoading === true"
+                        class="spinner-border text-primary"
+                        role="status"
+                    ></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

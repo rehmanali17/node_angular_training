@@ -36,14 +36,18 @@ passport.use(
             User.findOne({ where: { email }, raw: true })
                 .then((user) => {
                     if (!user) {
-                        return done(null, false);
+                        return done(null, false, {
+                            message: "User does not exists",
+                        });
                     }
                     if (!bcrypt.compareSync(password, user.password)) {
-                        return done(null, false);
+                        return done(null, false, {
+                            message: "Incorrect password",
+                        });
                     }
                     return done(null, user);
                 })
-                .catch((err) => done(err));
+                .catch((err) => done(err, false, { message: "Login failed" }));
         }
     )
 );

@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const { validationResult } = require("express-validator");
 
 class AuthController {
     // Signup Method
@@ -24,6 +25,7 @@ class AuthController {
                 statusCode: 201,
             });
         } catch (error) {
+            console.log(error.message);
             res.status(400).json({
                 message: "Registration failed",
                 statusCode: 400,
@@ -45,6 +47,38 @@ class AuthController {
         } catch (error) {
             res.status(400).json({
                 message: "Login failed",
+                statusCode: 400,
+            });
+        }
+    };
+
+    // Check Email Availability
+    static checkEmailAvailability = (req, res) => {
+        try {
+            const { email } = req.body;
+            User.findOne({ where: { email } })
+                .then((user) => {
+                    if (user) {
+                        res.status(200).json({
+                            isEmailAvailable: false,
+                            statusCode: 200,
+                        });
+                    } else {
+                        res.status(200).json({
+                            isEmailAvailable: true,
+                            statusCode: 200,
+                        });
+                    }
+                })
+                .catch((err) => {
+                    res.status(400).json({
+                        message: "Error occured",
+                        statusCode: 400,
+                    });
+                });
+        } catch (error) {
+            res.status(400).json({
+                message: "Error occured",
                 statusCode: 400,
             });
         }
