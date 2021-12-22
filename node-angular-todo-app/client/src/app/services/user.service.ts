@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { todoModel } from './../models/todo.model';
 import { AuthService } from './auth.service';
-import { baseURL } from './../utils/base-url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
@@ -21,7 +20,7 @@ export class UserService {
 
     // Get All Todos
     getAllTodos(): Observable<any> {
-        return this.httpClient.get<any>(`${baseURL}/api/user/get-all-todos`, {
+        return this.httpClient.get<any>(`api/user/get-all-todos`, {
             headers: {
                 Authorization: `${this.authService.accessToken}`,
             },
@@ -30,20 +29,17 @@ export class UserService {
 
     // Get Single Todo
     getSingleTodo(id: number): Observable<any> {
-        return this.httpClient.get<any>(
-            `${baseURL}/api/user/get-single-todo/${id}`,
-            {
-                headers: {
-                    Authorization: `${this.authService.accessToken}`,
-                },
-            }
-        );
+        return this.httpClient.get<any>(`api/user/get-single-todo/${id}`, {
+            headers: {
+                Authorization: `${this.authService.accessToken}`,
+            },
+        });
     }
 
     // Create Todo
     addTodo(task: string): Observable<any> {
         return this.httpClient.post<any>(
-            `${baseURL}/api/user/create-todo`,
+            `api/user/create-todo`,
             {
                 task,
             },
@@ -58,7 +54,7 @@ export class UserService {
     // Edit Todo
     editTodo(id: number, task: string): Observable<any> {
         return this.httpClient.put<any>(
-            `${baseURL}/api/user/edit-todo/${id}`,
+            `api/user/edit-todo/${id}`,
             { task },
             {
                 headers: {
@@ -71,7 +67,7 @@ export class UserService {
     // Update Todo Status
     updateTodoStatus(id: number, status: boolean): Observable<any> {
         return this.httpClient.put<any>(
-            `${baseURL}/api/user/update-todo-status/${id}`,
+            `api/user/update-todo-status/${id}`,
             { status },
             {
                 headers: {
@@ -83,27 +79,21 @@ export class UserService {
 
     // Delete Single Todo
     deleteTodo(id: number): Observable<any> {
-        return this.httpClient.delete<any>(
-            `${baseURL}/api/user/delete-todo/${id}`,
-            {
-                headers: {
-                    Authorization: `${this.authService.accessToken}`,
-                },
-            }
-        );
+        return this.httpClient.delete<any>(`api/user/delete-todo/${id}`, {
+            headers: {
+                Authorization: `${this.authService.accessToken}`,
+            },
+        });
     }
 
     // Bulk Delete Todos
     bulkDeleteTodos(ids: number[]): Observable<any> {
-        return this.httpClient.delete<any>(
-            `${baseURL}/api/user/bulk-delete-todos`,
-            {
-                headers: {
-                    Authorization: `${this.authService.accessToken}`,
-                },
-                body: { ids },
-            }
-        );
+        return this.httpClient.delete<any>(`api/user/bulk-delete-todos`, {
+            headers: {
+                Authorization: `${this.authService.accessToken}`,
+            },
+            body: { ids },
+        });
     }
 
     setTodos(todos: todoModel[]) {

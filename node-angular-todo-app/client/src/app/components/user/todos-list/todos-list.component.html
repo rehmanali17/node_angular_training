@@ -24,51 +24,67 @@
                     >Delete</a
                 >
             </div>
-            <table *ngIf="!isError" class="table table-striped mt-2">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">Status</th>
-                        <th scope="col">Todo</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        *ngFor="let todo of todos; let i = index"
-                        class="text-center"
-                    >
-                        <td>
-                            <input
-                                type="checkbox"
-                                [checked]="todo['isDone']"
-                                [(ngModel)]="todo.isDone"
-                                (change)="
-                                    handleStatusChange(todo.id, todo.isDone)
-                                "
-                            />
-                        </td>
-                        <td
-                            class="text-justify"
-                            [ngClass]="{ 'line-through': todo.isDone }"
+            <div *ngIf="!isError">
+                <p
+                    *ngIf="todos.length === 0"
+                    class="alert alert-danger text-center p-2 my-2"
+                >
+                    No todos have been added yet
+                </p>
+                <table
+                    *ngIf="todos.length > 0"
+                    class="table table-striped mt-2"
+                >
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">Status</th>
+                            <th scope="col">Todo</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let todo of todos; let i = index"
+                            class="text-center"
                         >
-                            {{ todo["task"] }}
-                        </td>
-                        <td>
-                            <i
-                                (click)="redirectToEditPage(todo.id)"
-                                class="fas fa-edit text-primary cursor-pointer"
-                            ></i>
-                        </td>
-                        <td class="text-danger">
-                            <i
-                                class="fas fa-trash-alt cursor-pointer"
-                                (click)="deleteTodo(todo.id)"
-                            ></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    [checked]="todo['isDone']"
+                                    [(ngModel)]="todo.isDone"
+                                    (change)="
+                                        handleStatusChange(todo.id, todo.isDone)
+                                    "
+                                />
+                            </td>
+                            <td
+                                class="text-justify"
+                                [ngClass]="{ 'line-through': todo.isDone }"
+                            >
+                                {{ todo["task"] }}
+                            </td>
+                            <td>
+                                <i
+                                    (click)="redirectToEditPage(todo.id)"
+                                    class="
+                                        fas
+                                        fa-edit
+                                        text-primary
+                                        cursor-pointer
+                                    "
+                                ></i>
+                            </td>
+                            <td class="text-danger">
+                                <i
+                                    class="fas fa-trash-alt cursor-pointer"
+                                    (click)="deleteTodo(todo.id)"
+                                ></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

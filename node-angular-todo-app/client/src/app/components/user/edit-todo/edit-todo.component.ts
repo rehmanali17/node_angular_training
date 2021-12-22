@@ -30,16 +30,14 @@ export class EditTodoComponent implements OnInit {
         this.todoId = this.route.snapshot.params['id'];
         this.userService.getSingleTodo(this.todoId).subscribe(
             (res) => {
-                setTimeout(() => {
-                    this.isLoading = false;
-                    if (!res['todo']) {
-                        this.router.navigateByUrl('/user/todos-list');
-                    } else {
-                        this.editTodoForm
-                            .get('task')
-                            ?.setValue(res['todo']['task']);
-                    }
-                }, 5000);
+                this.isLoading = false;
+                if (!res['todo']) {
+                    this.router.navigateByUrl('/user/todos-list');
+                } else {
+                    this.editTodoForm
+                        .get('task')
+                        ?.setValue(res['todo']['task']);
+                }
             },
             (err) => {
                 this.isLoading = false;

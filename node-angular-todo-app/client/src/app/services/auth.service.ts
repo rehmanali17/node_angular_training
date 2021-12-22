@@ -1,7 +1,6 @@
 import { loginFormModel } from './../models/login-form.model';
 import { Injectable } from '@angular/core';
 import { signupFormModel } from '../models/signup-form.model';
-import { baseURL } from '../utils/base-url';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, Subject } from 'rxjs';
 import {
@@ -21,7 +20,7 @@ export class AuthService {
     constructor(private httpClient: HttpClient) {}
 
     signup(user: signupFormModel): Observable<any> {
-        return this.httpClient.post(`${baseURL}/api/auth/signup`, user, {
+        return this.httpClient.post(`api/auth/signup`, user, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
             }),
@@ -29,7 +28,7 @@ export class AuthService {
     }
 
     login(user: loginFormModel): Observable<any> {
-        return this.httpClient.post(`${baseURL}/api/auth/login`, user, {
+        return this.httpClient.post(`api/auth/login`, user, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
             }),
@@ -42,7 +41,7 @@ export class AuthService {
         ): Observable<ValidationErrors | null> => {
             return this.httpClient
                 .post<any>(
-                    `${baseURL}/api/auth/check-email-availability`,
+                    `api/auth/check-email-availability`,
                     { email: control.value },
                     {
                         headers: new HttpHeaders({

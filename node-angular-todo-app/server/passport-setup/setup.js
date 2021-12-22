@@ -53,22 +53,20 @@ passport.use(
 );
 
 // Route Protection Strategy
+const options = {};
+options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken("JWT");
+options.secretOrKey = process.env.PORT;
 passport.use(
     "jwt",
-    new JwtStrategy(
-        {
-            secretOrKey: process.env.PORT,
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        },
-        (token, done) => {
-            User.findByPk(token.id, { raw: true })
-                .then((user) => {
-                    if (!user) {
-                        return done(null, false);
-                    }
-                    return done(null, user);
-                })
-                .catch((err) => done(err));
-        }
-    )
+    new JwtStrategy(options, (token, done) => {
+        console.log(token);
+        User.findByPk(token.id, { raw: true })
+            .then((user) => {
+                if (!user) {
+                    return done(null, false);
+                }
+                return done(null, user);
+            })
+            .catch((err) => done(err));
+    })
 );
